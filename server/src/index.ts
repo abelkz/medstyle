@@ -1,10 +1,25 @@
 import 'dotenv/config';
+import { execSync } from 'child_process';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import path from 'path';
 import fs from 'fs';
 import { rateLimit } from 'express-rate-limit';
+
+// Push DB schema on startup in production
+if (process.env.NODE_ENV === 'production') {
+  try {
+    console.log('Running prisma db push...');
+    execSync('npx prisma db push --accept-data-loss', {
+      cwd: path.join(__dirname, '..'),
+      stdio: 'inherit',
+    });
+    console.log('DB schema up to date.');
+  } catch (e) {
+    console.error('prisma db push failed:', e);
+  }
+}
 
 import { prisma } from './prisma/client';
 import authRoutes from './routes/auth';
