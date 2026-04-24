@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "PowerShell(node --version)",
+      "PowerShell(npm --version)",
+      "PowerShell(Get-Command node -ErrorAction SilentlyContinue; ls \"C:\\\\Program Files\\\\nodejs\\\\\" -ErrorAction SilentlyContinue | Select-Object Name; ls \"$env:APPDATA\\\\npm\\\\\" -ErrorAction SilentlyContinue | Select-Object Name -First 5; ls \"C:\\\\Program Files\\\\nodejs\" -ErrorAction SilentlyContinue | Select-Object Name)",
+      "PowerShell($env:Path = \"C:\\\\Program Files\\\\nodejs;\" + $env:Path; node --version; npm --version)",
+      "PowerShell(Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force; $env:Path = \"C:\\\\Program Files\\\\nodejs;\" + $env:Path; npm --version)",
+      "PowerShell($env:Path = \"C:\\\\Program Files\\\\nodejs;\" + $env:Path; Set-Location \"C:\\\\Users\\\\Zhansulu\\\\Desktop\\\\Рен\\\\server\"; npm install 2>&1 | Select-Object -Last 5)",
+      "PowerShell($env:Path = \"C:\\\\Program Files\\\\nodejs;\" + $env:Path; Set-Location \"C:\\\\Users\\\\Zhansulu\\\\Desktop\\\\Рен\\\\client\"; npm install 2>&1 | Select-Object -Last 5)",
+      "PowerShell($env:Path = \"C:\\\\Program Files\\\\nodejs;\" + $env:Path; Set-Location \"C:\\\\Users\\\\Zhansulu\\\\Desktop\\\\Рен\\\\client\"; npm install 2>&1 | Select-Object -Last 15)",
+      "PowerShell(docker --version 2>&1)",
+      "PowerShell($env:Path = \"C:\\\\Program Files\\\\nodejs;\" + $env:Path; Set-Location \"C:\\\\Users\\\\Zhansulu\\\\Desktop\\\\Рен\\\\server\"; npx prisma generate 2>&1 | Select-Object -Last 8)",
+      "PowerShell($env:Path = \"C:\\\\Program Files\\\\nodejs;\" + $env:Path; Set-Location \"C:\\\\Users\\\\Zhansulu\\\\Desktop\\\\Рен\\\\server\"; npm i --save-dev prisma@latest; npm i @prisma/client@latest 2>&1 | Select-Object -Last 5)",
+      "PowerShell($env:Path = \"C:\\\\Program Files\\\\nodejs;\" + $env:Path; Set-Location \"C:\\\\Users\\\\Zhansulu\\\\Desktop\\\\Рен\\\\server\"; npx prisma generate 2>&1 | Select-Object -Last 5)",
+      "PowerShell($env:Path = \"C:\\\\Program Files\\\\nodejs;\" + $env:Path; Set-Location \"C:\\\\Users\\\\Zhansulu\\\\Desktop\\\\Рен\\\\server\"; npx prisma generate 2>&1)",
+      "PowerShell($env:Path = \"C:\\\\Program Files\\\\nodejs;\" + $env:Path; Set-Location \"C:\\\\Users\\\\Zhansulu\\\\Desktop\\\\Рен\\\\server\"; npm i prisma@5 @prisma/client@5 --save-dev 2>&1 | Select-Object -Last 5)",
+      "PowerShell($env:Path = \"C:\\\\Program Files\\\\nodejs;\" + $env:Path; Set-Location \"C:\\\\Users\\\\Zhansulu\\\\Desktop\\\\Рен\\\\server\"; npm i @prisma/client@5 2>&1 | Select-Object -Last 3; npx prisma generate 2>&1 | Select-Object -Last 5)",
+      "PowerShell($env:Path = \"C:\\\\Program Files\\\\nodejs;\" + $env:Path; Set-Location \"C:\\\\Users\\\\Zhansulu\\\\Desktop\\\\Рен\\\\server\"; npx prisma generate 2>&1 | Where-Object { $_ -notmatch \"update|npm i|pris.ly|latest\" } | Select-Object -Last 10)",
+      "PowerShell($env:Path = \"C:\\\\Program Files\\\\nodejs;\" + $env:Path; Set-Location \"C:\\\\Users\\\\Zhansulu\\\\Desktop\\\\Рен\\\\server\"; npx prisma db push 2>&1 | Select-Object -Last 8)",
+      "PowerShell($env:Path = \"C:\\\\Program Files\\\\nodejs;\" + $env:Path; Set-Location \"C:\\\\Users\\\\Zhansulu\\\\Desktop\\\\Рен\\\\server\"; npx tsx prisma/seed.ts 2>&1)",
+      "PowerShell($env:Path = \"C:\\\\Program Files\\\\nodejs;\" + $env:Path; Set-Location \"C:\\\\Users\\\\Zhansulu\\\\Desktop\\\\Рен\\\\server\"; Start-Process powershell -ArgumentList \"-NoExit\", \"-Command\", \"`$env:Path = 'C:\\\\Program Files\\\\nodejs;' + `$env:Path; Set-Location 'C:\\\\Users\\\\Zhansulu\\\\Desktop\\\\Рен\\\\server'; npx tsx src/index.ts\" -WindowStyle Normal; Start-Sleep 3; Write-Host \"Server started\")",
+      "PowerShell($env:Path = \"C:\\\\Program Files\\\\nodejs;\" + $env:Path; Set-Location \"C:\\\\Users\\\\Zhansulu\\\\Desktop\\\\Рен\\\\client\"; Start-Process powershell -ArgumentList \"-NoExit\", \"-Command\", \"`$env:Path = 'C:\\\\Program Files\\\\nodejs;' + `$env:Path; Set-Location 'C:\\\\Users\\\\Zhansulu\\\\Desktop\\\\Рен\\\\client'; npx vite\" -WindowStyle Normal; Start-Sleep 5; Write-Host \"Client started\")",
+      "PowerShell(Invoke-WebRequest -Uri \"http://localhost:5000/api/health\" -UseBasicParsing -TimeoutSec 5 2>&1)",
+      "PowerShell(Start-Sleep 5; try { $r = Invoke-WebRequest -Uri \"http://localhost:5000/api/health\" -UseBasicParsing -TimeoutSec 8; \"Server OK: $\\($r.Content\\)\" } catch { \"Server not yet ready: $_\" })",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"http://localhost:3000\" -UseBasicParsing -TimeoutSec 8; \"Client OK: status $\\($r.StatusCode\\)\" } catch { \"Client check: $_\" })",
+      "PowerShell(Start-Process \"http://localhost:3000\")",
+      "mcp__Claude_Preview__preview_start",
+      "PowerShell(git --version; $env:Path = \"C:\\\\Program Files\\\\nodejs;\" + $env:Path; npx vercel --version 2>&1 | Select-Object -First 1)"
+    ]
+  }
+}

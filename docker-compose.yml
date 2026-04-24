@@ -1,0 +1,38 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: medstyle_postgres
+    environment:
+      POSTGRES_USER: medstyle
+      POSTGRES_PASSWORD: medstyle_pass
+      POSTGRES_DB: medstyle_db
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U medstyle -d medstyle_db']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: medstyle_server
+    environment:
+      DATABASE_URL: postgresql://medstyle:medstyle_pass@postgres:5432/medstyle_db
+      NODE_ENV: production
+    ports:
+      - '5000:5000'
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./server/uploads:/app/uploads
+
+volumes:
+  postgres_data:
