@@ -7,17 +7,22 @@ import path from 'path';
 import fs from 'fs';
 import { rateLimit } from 'express-rate-limit';
 
-// Push DB schema on startup in production
+// Push DB schema and seed on startup in production
 if (process.env.NODE_ENV === 'production') {
+  const serverRoot = path.join(__dirname, '..');
   try {
     console.log('Running prisma db push...');
-    execSync('npx prisma db push --accept-data-loss', {
-      cwd: path.join(__dirname, '..'),
-      stdio: 'inherit',
-    });
+    execSync('npx prisma db push --accept-data-loss', { cwd: serverRoot, stdio: 'inherit' });
     console.log('DB schema up to date.');
   } catch (e) {
     console.error('prisma db push failed:', e);
+  }
+  try {
+    console.log('Running seed...');
+    execSync('npx tsx prisma/seed.ts', { cwd: serverRoot, stdio: 'inherit' });
+    console.log('Seed complete.');
+  } catch (e) {
+    console.error('Seed failed:', e);
   }
 }
 
