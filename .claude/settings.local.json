@@ -27,7 +27,9 @@
       "PowerShell(try { $r = Invoke-WebRequest -Uri \"http://localhost:3000\" -UseBasicParsing -TimeoutSec 8; \"Client OK: status $\\($r.StatusCode\\)\" } catch { \"Client check: $_\" })",
       "PowerShell(Start-Process \"http://localhost:3000\")",
       "mcp__Claude_Preview__preview_start",
-      "PowerShell(git --version; $env:Path = \"C:\\\\Program Files\\\\nodejs;\" + $env:Path; npx vercel --version 2>&1 | Select-Object -First 1)"
+      "PowerShell(git --version; $env:Path = \"C:\\\\Program Files\\\\nodejs;\" + $env:Path; npx vercel --version 2>&1 | Select-Object -First 1)",
+      "PowerShell(gh --version 2>&1)",
+      "PowerShell(Start-Process powershell -ArgumentList \"-NoExit\", \"-Command\", \"Set-Location 'C:\\\\Users\\\\Zhansulu\\\\Desktop\\\\Рен'\" -WindowStyle Normal)"
     ]
   }
 }
