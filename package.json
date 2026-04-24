@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "render:build": "cd server && npm install && npx prisma generate && npm run build && cd ../client && npm install && npm run build",
+    "render:build": "cd server && npm install && npx prisma generate && npm run build && cd ../client && npm install --include=dev && npm run build",
     "render:start": "cd server && node dist/index.js"
   }
 }
