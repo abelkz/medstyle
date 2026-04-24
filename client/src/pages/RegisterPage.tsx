@@ -50,9 +50,9 @@ export default function RegisterPage() {
         <img src="https://picsum.photos/seed/register/800/900" alt="register" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-navy-900/60 flex flex-col items-center justify-center p-12 text-white text-center">
           <div className="w-12 h-12 bg-mint-500 rounded-xl flex items-center justify-center mb-4">
-            <span className="font-display font-bold text-xl">M</span>
+            <span className="font-display font-bold text-xl">G</span>
           </div>
-          <h2 className="font-display text-4xl font-bold mb-3">Join MedStyle</h2>
+          <h2 className="font-display text-4xl font-bold mb-3">Join Galium</h2>
           <p className="text-gray-300 text-lg">Create your account to start shopping premium medical apparel</p>
         </div>
       </div>

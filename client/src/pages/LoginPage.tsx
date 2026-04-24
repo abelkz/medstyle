@@ -72,8 +72,8 @@ export default function LoginPage() {
           {/* Demo credentials */}
           <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6 text-sm">
             <p className="font-medium text-blue-700 mb-1">Demo Credentials:</p>
-            <p className="text-blue-600">User: user@medstyle.com / User123!</p>
-            <p className="text-blue-600">Admin: admin@medstyle.com / Admin123!</p>
+            <p className="text-blue-600">User: user@galium.com / User123!</p>
+            <p className="text-blue-600">Admin: admin@galium.com / Admin123!</p>
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">

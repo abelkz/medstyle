@@ -29,7 +29,10 @@
       "mcp__Claude_Preview__preview_start",
       "PowerShell(git --version; $env:Path = \"C:\\\\Program Files\\\\nodejs;\" + $env:Path; npx vercel --version 2>&1 | Select-Object -First 1)",
       "PowerShell(gh --version 2>&1)",
-      "PowerShell(Start-Process powershell -ArgumentList \"-NoExit\", \"-Command\", \"Set-Location 'C:\\\\Users\\\\Zhansulu\\\\Desktop\\\\Рен'\" -WindowStyle Normal)"
+      "PowerShell(Start-Process powershell -ArgumentList \"-NoExit\", \"-Command\", \"Set-Location 'C:\\\\Users\\\\Zhansulu\\\\Desktop\\\\Рен'\" -WindowStyle Normal)",
+      "Bash(npx tsc *)",
+      "Bash(export PATH=\"/c/Program Files/nodejs:$PATH\")",
+      "Bash(npx vite *)"
     ]
   }
 }

@@ -17,9 +17,9 @@ export default function AdminLayout() {
         <div className="p-6 border-b border-navy-700">
           <Link to="/" className="flex items-center gap-2">
             <div className="w-7 h-7 bg-mint-500 rounded-lg flex items-center justify-center">
-              <span className="text-white font-display font-bold text-xs">M</span>
+              <span className="text-white font-display font-bold text-xs">G</span>
             </div>
-            <span className="font-display text-lg font-bold">Med<span className="text-mint-400">Style</span></span>
+            <span className="font-display text-lg font-bold">Gal<span className="text-mint-400">ium</span></span>
           </Link>
           <p className="text-gray-400 text-xs mt-1 ml-9">Admin Panel</p>
         </div>

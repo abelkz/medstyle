@@ -40,7 +40,7 @@ export const useAuthStore = create<AuthState>()(
       },
     }),
     {
-      name: 'medstyle-auth',
+      name: 'galium-auth',
       partialize: (state) => ({ user: state.user }),
     }
   )

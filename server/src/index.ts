@@ -63,7 +63,7 @@ if (isProd) {
 }
 
 app.listen(PORT, () => {
-  console.log(`🚀 MedStyle server running on http://localhost:${PORT}`);
+  console.log(`🚀 Galium server running on http://localhost:${PORT}`);
 });
 
 export default app;

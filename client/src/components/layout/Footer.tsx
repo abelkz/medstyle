@@ -10,10 +10,10 @@ export default function Footer() {
           <div className="md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 bg-mint-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-display font-bold text-sm">M</span>
+                <span className="text-white font-display font-bold text-sm">G</span>
               </div>
               <span className="font-display text-xl font-bold">
-                Med<span className="text-mint-400">Style</span>
+                Gal<span className="text-mint-400">ium</span>
               </span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
@@ -72,7 +72,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-navy-700 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-gray-500 text-sm">© {new Date().getFullYear()} MedStyle. All rights reserved.</p>
+          <p className="text-gray-500 text-sm">© {new Date().getFullYear()} Galium. All rights reserved.</p>
           <div className="flex gap-6">
             <a href="#" className="text-gray-500 hover:text-gray-300 text-sm">Privacy Policy</a>
             <a href="#" className="text-gray-500 hover:text-gray-300 text-sm">Terms of Service</a>

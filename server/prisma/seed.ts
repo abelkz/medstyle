@@ -49,15 +49,15 @@ async function main() {
   const userHash = await bcrypt.hash('User123!', 12);
 
   await prisma.user.upsert({
-    where: { email: 'admin@medstyle.com' },
+    where: { email: 'admin@galium.com' },
     update: {},
-    create: { name: 'Admin User', email: 'admin@medstyle.com', passwordHash: adminHash, role: 'ADMIN' },
+    create: { name: 'Admin User', email: 'admin@galium.com', passwordHash: adminHash, role: 'ADMIN' },
   });
 
   await prisma.user.upsert({
-    where: { email: 'user@medstyle.com' },
+    where: { email: 'user@galium.com' },
     update: {},
-    create: { name: 'Jane Doe', email: 'user@medstyle.com', passwordHash: userHash },
+    create: { name: 'Jane Doe', email: 'user@galium.com', passwordHash: userHash },
   });
 
   console.log('✅ Users created');

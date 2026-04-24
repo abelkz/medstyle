@@ -21,7 +21,7 @@ const perks = [
 ];
 
 const testimonials = [
-  { name: 'Dr. Sarah Kim', role: 'ER Physician', text: "I've tried dozens of scrub brands — MedStyle is leagues above the rest. The fit is impeccable.", avatar: 'https://picsum.photos/seed/dr1/80/80' },
+  { name: 'Dr. Sarah Kim', role: 'ER Physician', text: "I've tried dozens of scrub brands — Galium is leagues above the rest. The fit is impeccable.", avatar: 'https://picsum.photos/seed/dr1/80/80' },
   { name: 'Nurse Marcus L.', role: 'ICU Nurse', text: "Finally scrubs that look and feel amazing after a 12-hour shift. The fabric is incredible.", avatar: 'https://picsum.photos/seed/dr2/80/80' },
   { name: 'Dr. Alina Petrov', role: 'Surgeon', text: "The lab coats are perfectly tailored. I always get compliments from patients and colleagues.", avatar: 'https://picsum.photos/seed/dr3/80/80' },
 ];

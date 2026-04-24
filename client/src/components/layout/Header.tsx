@@ -44,10 +44,10 @@ export default function Header() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
             <div className="w-8 h-8 bg-navy-500 rounded-lg flex items-center justify-center">
-              <span className="text-white font-display font-bold text-sm">M</span>
+              <span className="text-white font-display font-bold text-sm">G</span>
             </div>
             <span className="font-display text-xl font-bold text-navy-700 tracking-tight">
-              Med<span className="text-mint-500">Style</span>
+              Gal<span className="text-mint-500">ium</span>
             </span>
           </Link>
 
