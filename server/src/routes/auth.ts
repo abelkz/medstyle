@@ -27,60 +27,70 @@ const loginSchema = z.object({
 });
 
 router.post('/register', authLimiter, async (req: Request, res: Response): Promise<void> => {
-  const parsed = registerSchema.safeParse(req.body);
-  if (!parsed.success) {
-    res.status(400).json({ error: parsed.error.flatten().fieldErrors });
-    return;
+  try {
+    const parsed = registerSchema.safeParse(req.body);
+    if (!parsed.success) {
+      res.status(400).json({ error: parsed.error.flatten().fieldErrors });
+      return;
+    }
+
+    const { name, email, password } = parsed.data;
+
+    const existing = await prisma.user.findUnique({ where: { email } });
+    if (existing) {
+      res.status(409).json({ error: 'Email already registered' });
+      return;
+    }
+
+    const passwordHash = await bcrypt.hash(password, 12);
+    const user = await prisma.user.create({
+      data: { name, email, passwordHash },
+      select: { id: true, name: true, email: true, role: true },
+    });
+
+    const { accessToken, refreshToken } = generateTokens(user.id, user.role);
+    setTokenCookies(res, accessToken, refreshToken);
+
+    res.status(201).json({ user, accessToken });
+  } catch (err: any) {
+    console.error('Register error:', err);
+    res.status(500).json({ error: err?.message || 'Internal server error' });
   }
-
-  const { name, email, password } = parsed.data;
-
-  const existing = await prisma.user.findUnique({ where: { email } });
-  if (existing) {
-    res.status(409).json({ error: 'Email already registered' });
-    return;
-  }
-
-  const passwordHash = await bcrypt.hash(password, 12);
-  const user = await prisma.user.create({
-    data: { name, email, passwordHash },
-    select: { id: true, name: true, email: true, role: true },
-  });
-
-  const { accessToken, refreshToken } = generateTokens(user.id, user.role);
-  setTokenCookies(res, accessToken, refreshToken);
-
-  res.status(201).json({ user, accessToken });
 });
 
 router.post('/login', authLimiter, async (req: Request, res: Response): Promise<void> => {
-  const parsed = loginSchema.safeParse(req.body);
-  if (!parsed.success) {
-    res.status(400).json({ error: parsed.error.flatten().fieldErrors });
-    return;
+  try {
+    const parsed = loginSchema.safeParse(req.body);
+    if (!parsed.success) {
+      res.status(400).json({ error: parsed.error.flatten().fieldErrors });
+      return;
+    }
+
+    const { email, password } = parsed.data;
+    const user = await prisma.user.findUnique({ where: { email } });
+
+    if (!user || !user.isActive) {
+      res.status(401).json({ error: 'Invalid credentials' });
+      return;
+    }
+
+    const valid = await bcrypt.compare(password, user.passwordHash);
+    if (!valid) {
+      res.status(401).json({ error: 'Invalid credentials' });
+      return;
+    }
+
+    const { accessToken, refreshToken } = generateTokens(user.id, user.role);
+    setTokenCookies(res, accessToken, refreshToken);
+
+    res.json({
+      user: { id: user.id, name: user.name, email: user.email, role: user.role },
+      accessToken,
+    });
+  } catch (err: any) {
+    console.error('Login error:', err);
+    res.status(500).json({ error: err?.message || 'Internal server error' });
   }
-
-  const { email, password } = parsed.data;
-  const user = await prisma.user.findUnique({ where: { email } });
-
-  if (!user || !user.isActive) {
-    res.status(401).json({ error: 'Invalid credentials' });
-    return;
-  }
-
-  const valid = await bcrypt.compare(password, user.passwordHash);
-  if (!valid) {
-    res.status(401).json({ error: 'Invalid credentials' });
-    return;
-  }
-
-  const { accessToken, refreshToken } = generateTokens(user.id, user.role);
-  setTokenCookies(res, accessToken, refreshToken);
-
-  res.json({
-    user: { id: user.id, name: user.name, email: user.email, role: user.role },
-    accessToken,
-  });
 });
 
 router.post('/refresh', async (req: Request, res: Response): Promise<void> => {
