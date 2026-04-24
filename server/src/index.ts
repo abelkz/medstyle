@@ -6,6 +6,7 @@ import path from 'path';
 import fs from 'fs';
 import { rateLimit } from 'express-rate-limit';
 
+import { prisma } from './prisma/client';
 import authRoutes from './routes/auth';
 import productRoutes from './routes/products';
 import categoryRoutes from './routes/categories';
@@ -49,7 +50,14 @@ app.use('/api/payments', paymentRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/wishlist', wishlistRoutes);
 
-app.get('/api/health', (_req, res) => res.json({ status: 'ok' }));
+app.get('/api/health', async (_req, res) => {
+  try {
+    await prisma.$queryRaw`SELECT 1`;
+    res.json({ status: 'ok', db: 'connected' });
+  } catch (err: any) {
+    res.status(500).json({ status: 'error', db: err.message });
+  }
+});
 
 // Serve React build in production
 if (isProd) {
